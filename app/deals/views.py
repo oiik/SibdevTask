@@ -6,19 +6,41 @@ from .models import Deals
 from .serializers import DealsSerializer
 
 from rest_framework import status
-from django.db.models import Sum
+from django.db.models import Sum, CharField, Value
 from .serializers import TestSer
+
+
 
 class DealsView(APIView):
   def get(self, request):
 #    deals = Deals.objects.all()
 #    serializer = DealsSerializer(deals, many=True)
-
+ 
     customers = Deals.objects.values('customer').annotate(Sum('total'))
     customersTop = customers.order_by('-total__sum')[0:5]
+
+    all_gems = []
+    for username in customersTop.values_list('customer',flat=True):
+      user_gems = Deals.objects.all().filter(customer=username).values_list('item', flat=True)
+      all_gems.append(user_gems)    
+    #for l in all_gems:
+    #  print(set(l))
+    #print("--------------------------")
+    new_gems = []
+    new_gems.append( set(all_gems[0]) & set(all_gems[1] | all_gems[2] | all_gems[3] | all_gems[4]))
+    new_gems.append( set(all_gems[1]) & set(all_gems[0]|all_gems[2]|all_gems[3]|all_gems[4]))
+    new_gems.append( set(all_gems[2]) & set(all_gems[0]|all_gems[1]|all_gems[3]|all_gems[4]))
+    new_gems.append( set(all_gems[3]) & set(all_gems[0]|all_gems[1]|all_gems[2]|all_gems[4]))
+    new_gems.append( set(all_gems[4]) & set(all_gems[0]|all_gems[1]|all_gems[2]|all_gems[3]))
+
+    j = 0
+    for user in customersTop:
+      user[username] = new_gems[j]
+      j += 1
+
     serializer = TestSer(customersTop, many=True)
     #serializer =  TestSer(test)
-    return Response({"deals": serializer.data})
+    return Response({"deals": serializer.data,})
     #return Response({"response":customersTop})
 
 

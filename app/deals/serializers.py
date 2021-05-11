@@ -17,6 +17,7 @@ class FileSerializer(serializers.ModelSerializer):
 class TestSer(serializers.ModelSerializer):
   username = serializers.CharField(source='customer')
   spent_money = serializers.IntegerField(source='total__sum')
+  gems = serializers.CharField(source='turophile')
   class Meta:
     model = Test
-    fields = ('username','spent_money')
+    fields = ('username','spent_money','gems')
