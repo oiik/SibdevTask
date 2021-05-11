@@ -1,5 +1,5 @@
 # SibdevTask
-Запуск: sudo docker-compose up 
+Запуск: sudo docker-compose up -d
 
 (sudo docker-compose up  --build)
 
