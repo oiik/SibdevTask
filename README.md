@@ -1,5 +1,6 @@
 # SibdevTask
 Запуск: sudo docker-compose up 
+
 если ошибки(sudo docker-compose up  --build)
 
 ### GET
