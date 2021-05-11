@@ -1,7 +1,7 @@
 # SibdevTask
-Запуск: sudo docker-compose up -d
+Запуск: sudo docker-compose up 
 
-(sudo docker-compose up  --build)
+(sudo docker-compose up -d --build)
 
 ### GET
 ### POST
