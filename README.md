@@ -3,7 +3,10 @@
 
 (sudo docker-compose up -d --build)
 
-### GET
+
 ### POST
-![image](https://user-images.githubusercontent.com/40664658/117278927-c85e9780-ae93-11eb-9f49-f8400b8ed151.png)
+![image](https://user-images.githubusercontent.com/40664658/117770879-0b3fb700-b268-11eb-9c87-ea38ce70341c.png)
+
+### GET
+![image](https://user-images.githubusercontent.com/40664658/117770916-1abf0000-b268-11eb-8af1-f3d57333308b.png)
 
